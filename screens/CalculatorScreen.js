@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button  } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text'
 
 export default class CalculatorScreen extends React.Component {
   static navigationOptions = {
@@ -8,36 +9,83 @@ export default class CalculatorScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { text: 'Useless Placeholder' };
+    this.state = { 
+      text: 'Useless Placeholder',
+      commissionValue: '0'
+    };
   }
 
 
-    _onPressLearnMore() {
-      alert("doy click");
+    _onPressLearnMore = async () => {
+      //var sellValue = document.getElementById("sellValue").value;
+      let seelValue= this.state.sellValue;
+      const unmaskedseelValue = this.state.sellValue.getRawValue();
+      //alert(unmaskedseelValue);
+      let dealValue= this.dealValue;
+      if(unmaskedseelValue != NaN && dealValue != undefined){
+        let commissionValueResult = unmaskedseelValue * dealValue /100;
+        //alert(seelValue);
+        //alert(dealValue);
+        alert(commissionValueResult);
+        this.setState({commissionValue: commissionValueResult});
+      }else{
+        alert("Debes ingresar los valores a calcular"); 
+      }
+      
     }
 
-
+    componentDidMount() {
+      
+    }
 
   render() {
     return (
       <ScrollView style={styles.container}>
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
-        <Text>
-          Hola
-         
+        <Text style={styles.bigTitle}>
+          Calculadora comisión venta  
+        </Text>
+        <Text style={styles.info}>
+          Calculadora comisión venta  {this.state.commissionValue}
         </Text>
         <View>
-          <TextInput
+
+          <TextInputMask
+            type={'money'}
+            options={{
+              precision: 0,
+              separator: ',',
+              delimiter: '.',
+              unit: '$',
+              suffixUnit: ''
+            }}
+            value={this.state.sellValue}
+            ref={(ref) => this.state.sellValue = ref}
+            onChangeText={text => {
+            this.setState({
+              sellValue: text
+            })
+            }}
+            id="sellValue"
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            placeholder="Ingrese el valor de venta (sin puntos ni comas)"
+            keyboardType={'numeric'}                            
+          />
+         
+       
+            <TextInput
+              id="dealValue"
               style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
+              placeholder="Ingrese el porcentaje pactado"
+              keyboardType={'numeric'}
+              onChangeText={(text) => this.dealValue = text}
             />
           <Button
             onPress={this._onPressLearnMore}
             title="Learn More"
             color="#841584"
-            accessibilityLabel="Learn more about this purple button"
+            accessibilityLabel="Presiona para calcular la comisión de venta"
           />
         </View>
         
@@ -52,6 +100,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: '#ffffff',
+  },
+  bigTitle: {
+    textAlign: 'center',
+    fontSize: 20,
+  },
+  info: {
+    textAlign: 'justify',
+    fontSize: 16,
   },
 });
 
