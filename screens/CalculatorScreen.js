@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button  } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask, TextMask  } from 'react-native-masked-text'
 
 export default class CalculatorScreen extends React.Component {
   static navigationOptions = {
@@ -20,14 +20,21 @@ export default class CalculatorScreen extends React.Component {
       //var sellValue = document.getElementById("sellValue").value;
       let seelValue= this.state.sellValue;
       const unmaskedseelValue = this.state.sellValue.getRawValue();
-      //alert(unmaskedseelValue);
-      let dealValue= this.dealValue;
+      let dealValue= this.state.dealValue;
       if(unmaskedseelValue != NaN && dealValue != undefined){
         let commissionValueResult = unmaskedseelValue * dealValue /100;
         //alert(seelValue);
         //alert(dealValue);
-        alert(commissionValueResult);
+        //alert(commissionValueResult);
+
         this.setState({commissionValue: commissionValueResult});
+
+
+        //clear input text
+        this.setState({
+              sellValue: "",
+              dealValue: ""
+            })
       }else{
         alert("Debes ingresar los valores a calcular"); 
       }
@@ -47,8 +54,21 @@ export default class CalculatorScreen extends React.Component {
           Calculadora comisión venta  
         </Text>
         <Text style={styles.info}>
-          Calculadora comisión venta  {this.state.commissionValue}
+          Calculadora comisión venta  {/*this.state.commissionValue*/}
         </Text>
+        <View>
+           <TextMask
+          value={this.state.commissionValue}
+          type={'money'}
+           options={{
+              precision: 0,
+              separator: ',',
+              delimiter: '.',
+              unit: '$',
+              suffixUnit: ''
+            }}
+          />
+        </View>
         <View>
 
           <TextInputMask
@@ -69,7 +89,7 @@ export default class CalculatorScreen extends React.Component {
             }}
             id="sellValue"
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            placeholder="Ingrese el valor de venta (sin puntos ni comas)"
+            placeholder="Ingrese el valor de venta"
             keyboardType={'numeric'}                            
           />
          
@@ -79,7 +99,8 @@ export default class CalculatorScreen extends React.Component {
               style={{height: 40, borderColor: 'gray', borderWidth: 1}}
               placeholder="Ingrese el porcentaje pactado"
               keyboardType={'numeric'}
-              onChangeText={(text) => this.dealValue = text}
+              onChangeText={(text) => this.state.dealValue = text}
+              value={this.state.dealValue}
             />
           <Button
             onPress={this._onPressLearnMore}
