@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import CalculatorScreen from '../screens/CalculatorScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import NotaryScreen from '../screens/NotaryScreen';
 import Colors from '../constants/Colors';
 
 const shadowTop = {
@@ -94,7 +95,7 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'INMOOBI S.A.S',
+  tabBarLabel: 'weee',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -116,3 +117,6 @@ export default createBottomTabNavigator({
   LinksStack,
   SettingsStack,
 });
+
+
+
