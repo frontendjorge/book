@@ -1,8 +1,8 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 import { AppLoading, Asset, Font, Icon, AdMobBanner } from 'expo';
-import { DrawerNavigator } from 'react-navigation';
 import AppNavigator from './navigation/AppNavigator';
+
 
 export default class App extends React.Component {
   state = {
@@ -23,9 +23,10 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
 
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          
+          {/*Platform.OS === 'ios' && <StatusBar barStyle="default" />*/}
+          <StatusBar hidden={true} />
           <AppNavigator />
+         
          
           <AdMobBanner 
             style={styles.blockcenter}
@@ -33,7 +34,10 @@ export default class App extends React.Component {
             adUnitID="ca-app-pub-8103485771273260/2997499904"
             testDeviceID="EMULATOR"
             onDidFailToReceiveAdWithError={this.bannerError}
-          />      
+          />  
+
+         
+
         </View>
         
       );

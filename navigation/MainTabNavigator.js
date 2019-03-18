@@ -6,7 +6,6 @@ import HomeScreen from '../screens/HomeScreen';
 import CalculatorScreen from '../screens/CalculatorScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import NotaryScreen from '../screens/NotaryScreen';
 import Colors from '../constants/Colors';
 
 const shadowTop = {
@@ -43,7 +42,7 @@ HomeStack.navigationOptions = {
     activeTintColor: Colors.activeTintColor,
     style: {
       backgroundColor: Colors.tabBarBackground,
-      shadowTop,
+     
     },
   }
 };
@@ -111,12 +110,16 @@ SettingsStack.navigationOptions = {
   }
 };
 
+
+
 export default createBottomTabNavigator({
   HomeStack,
   CalculatorStack,
   LinksStack,
   SettingsStack,
 });
+
+
 
 
 
