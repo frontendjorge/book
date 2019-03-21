@@ -42,7 +42,7 @@ HomeStack.navigationOptions = {
     activeTintColor: Colors.activeTintColor,
     style: {
       backgroundColor: Colors.tabBarBackground,
-     
+      shadowTop,
     },
   }
 };

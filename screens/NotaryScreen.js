@@ -49,8 +49,7 @@ export default class NotaryScreen extends React.Component {
 
 
     _onPressLearnMore = async () => {
-      
-      
+      console.warn(this.state.typeP);
     }
 
     componentDidMount() {
@@ -67,7 +66,8 @@ export default class NotaryScreen extends React.Component {
         <View>
           <Text style={styles.bigTitle}>Calculadora gastos de Escr</Text>
           <Text style={styles.info}>Los gastos de escrituración y registro son la suma que se debe cancelar por la compra o venta de un bien inmueble. Hay unos gastos que se deben cancelar en la notaría, y otros que se pagan en la oficina de instrumentos públicos.</Text>
-          <Text style={styles.bigTitle}>Seleccione el tipo de venta y persona</Text>      
+          <Text style={styles.bigTitle}>Seleccione el tipo de venta y persona</Text>    
+        </View>
           <View>
               <Picker
                     style={{height: 50, width: '100%'}}
@@ -119,7 +119,12 @@ export default class NotaryScreen extends React.Component {
 
           </View>
 
-        </View>
+          <Button
+              onPress={this._onPressLearnMore}
+              title="¡Calcular ahora!"
+              color="#841584"
+              accessibilityLabel="Presiona para calcular los gastos de escrituración"
+            />
            
       </ScrollView>
     );
