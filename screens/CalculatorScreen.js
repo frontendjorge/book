@@ -23,7 +23,7 @@ class CalculatorScreen extends React.Component {
     return (  
         <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Text>Calculator screen</Text>
+          
           <Button
             title="Go to Notary"
             onPress={() => this.props.navigation.navigate('Notary')}
@@ -88,7 +88,7 @@ export default class AppCalculator extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 0,
     backgroundColor: '#ffffff',
     color: '#333'
   },

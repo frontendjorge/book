@@ -6,6 +6,7 @@ import Touchable from 'react-native-platform-touchable';
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'app.json',
+    header: null,
     headerStyle: {
       backgroundColor: '#333333',
       borderBottomColor: 'black',
@@ -22,13 +23,12 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (  
         <View>
-        <Text>hola</Text>
+        
         <Touchable
           background={Touchable.Ripple('#ccc', false)}
           style={styles.option}
           onPress={this._handlePressPreRent}>
           <View style={{ flexDirection: 'row' }}>
-           
             <View style={styles.optionTextContainer}>
               <Text style={styles.optionText}>
                 Pre consigna para administración
@@ -48,13 +48,13 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 0,
   },
   optionsTitleText: {
     fontSize: 16,
-    marginLeft: 15,
-    marginTop: 9,
-    marginBottom: 12,
+    marginLeft: 0,
+    marginTop: 0,
+    marginBottom: 0,
   },
   optionIconContainer: {
     marginRight: 9,
@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 15,
-    marginTop: 1,
+    marginTop: 0,
   },
 });

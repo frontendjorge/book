@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, Button, Alert, StatusBar  } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import NotaryScreenInner from '../screens/NotaryScreen';
-import ComissionScreenInner from '../screens/ComissionScreen';
+import HabitatScreenInner from '../screens/HabitatScreen';
+import HorizontalScreenInner from '../screens/HorizontalPropertyScreen';
+import CommerceScreenInner from '../screens/CommerceScreen';
+
+
 
 
 class LawsScreen extends React.Component {
@@ -23,7 +26,7 @@ class LawsScreen extends React.Component {
     return (  
         <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Text>Calculator screen</Text>
+         
           <Button
             title="Go to ph law"
             onPress={() => this.props.navigation.navigate('Horizontal')}
@@ -48,7 +51,7 @@ class HabitatScreen extends React.Component {
   };
   render() {
     return (
-        <NotaryScreenInner></NotaryScreenInner>
+        <HabitatScreenInner></HabitatScreenInner>
     );
   }
 };
@@ -59,7 +62,7 @@ class HorizontalScreen extends React.Component {
   };
   render() {
     return (
-        <ComissionScreenInner></ComissionScreenInner>
+        <HorizontalScreenInner></HorizontalScreenInner>
     );
   }
 };
@@ -70,7 +73,7 @@ class CommerceScreen extends React.Component {
   };
   render() {
     return (
-        <ComissionScreenInner></ComissionScreenInner>
+        <CommerceScreenInner></CommerceScreenInner>
     );
   }
 };
@@ -104,7 +107,7 @@ export default class AppCalculator extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 0,
     backgroundColor: '#ffffff',
     color: '#333'
   },
