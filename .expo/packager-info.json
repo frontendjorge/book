@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://ry-qat.anonymous.book.exp.direct",
-  "packagerNgrokUrl": "https://packager.ry-qat.anonymous.book.exp.direct",
-  "ngrokPid": 7616,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

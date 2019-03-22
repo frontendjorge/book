@@ -4,6 +4,10 @@ import { TextInputMask, TextMask  } from 'react-native-masked-text'
 
 const typePerson = [
   {
+    label: 'Seleccione tipo de persona',
+    value: "null",
+  },
+  {
     label: 'Soy persona natural',
     value: 'pn',
   },
@@ -14,6 +18,10 @@ const typePerson = [
 ];
 
 const typeSell = [
+  {
+    label: 'Seleccione tipo de venta',
+    value: "null",
+  },
   {
     label: 'Venta',
     value: '1',
@@ -43,13 +51,29 @@ export default class NotaryScreen extends React.Component {
     this.state = { 
       text: 'Useless Placeholder',
       typeP: '',
-      typeSe: ''
+      typeSe: '',
+      sellPropertyValue: ''
     };
   }
 
 
     _onPressLearnMore = async () => {
-      console.warn(this.state.typeP);
+      let typeSell = this.state.typeSe;    
+      this.setState({typeSe: typeSell});
+      let typePerson = this.state.typeP;    
+      this.setState({typeP: typePerson});
+      const unmaskedseelValue = this.state.sellPropertyValue.getRawValue();
+      
+      
+      if(typeSell != "" && typePerson != "" && unmaskedseelValue != NaN){
+        this.setState({typeP: typePerson});
+        this.setState({typeSe: typeSell});
+        this.setState({sellPropertyValue: unmaskedseelValue});
+        console.warn(typeSell + " holaaa " + typePerson + " " + unmaskedseelValue);
+      }else{
+        Alert.alert("DEBES SABER QUE","Es necesario ingresar todos los campos");
+      }
+ 
     }
 
     componentDidMount() {
@@ -62,6 +86,8 @@ export default class NotaryScreen extends React.Component {
         
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
+
+      <View>
   
         <View>
           <Text style={styles.bigTitle}>Calculadora gastos de Escr</Text>
@@ -72,10 +98,15 @@ export default class NotaryScreen extends React.Component {
               <Picker
                     style={{height: 50, width: '100%'}}
                     selectedValue={this.state.typeSe}
-                    onValueChange={itemValue => this.setState({ typeSe: itemValue })}>
+                    onValueChange={itemValue => {
+                    this.setState({
+                      typeSe: itemValue
+                    })
+                    }}>       
                     {typeSell.map((i, index) => (
                       <Picker.Item key={index} label={i.label} value={i.value} />
                     ))}
+                    
               </Picker>
         
           </View>
@@ -85,7 +116,11 @@ export default class NotaryScreen extends React.Component {
               <Picker
                 style={{height: 50, width: '100%'}}
                 selectedValue={this.state.typeP}
-                onValueChange={itemValue => this.setState({ typeP: itemValue })}>
+                 onValueChange={itemValueP => {
+                this.setState({
+                  typeP: itemValueP
+                })
+                }}>   
                 {typePerson.map((i, index) => (
                   <Picker.Item key={index} label={i.label} value={i.value} />
                 ))}
@@ -125,7 +160,26 @@ export default class NotaryScreen extends React.Component {
               color="#841584"
               accessibilityLabel="Presiona para calcular los gastos de escrituración"
             />
-           
+       
+          <Text style={styles.info}>Tipo de venta: {this.state.typeSe}</Text>
+          <Text style={styles.info}>Tipo de persona: {this.state.typeP}</Text>
+          <View style={styles.commissionStyle}>
+              <Text style={styles.commissionLabel}>Valor de la venta: </Text>
+              <TextMask
+              style={styles.commissionLabelV}
+              value={this.state.sellPropertyValue}
+              type={'money'}
+              options={{
+                  precision: 0,
+                  separator: ',',
+                  delimiter: '.',
+                  unit: '$',
+                  suffixUnit: ''
+                }}
+              />
+            </View>
+      </View>  
+
       </ScrollView>
     );
   }
