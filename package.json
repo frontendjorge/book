@@ -13,6 +13,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "expo": "^32.0.6",
+    "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
@@ -20,6 +21,8 @@
     "react-native-masked-text": "^1.11.1",
     "react-native-platform-touchable": "^1.1.1",
     "react-native-router-flux": "^4.0.6",
+    "react-native-search-filter": "^0.1.4",
+    "react-native-text-highlight": "^1.0.1",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
