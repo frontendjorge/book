@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add types-installer
 
 PATH: 
-  C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Go\bin;C:\Program Files\nodejs\;C:\Users\Jorge Suarez Uribe\AppData\Local\Android\Sdk\platform-tools;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\;C:\Users\Jorge Suarez Uribe\AppData\Local\Microsoft\WindowsApps;C:\Users\Jorge Suarez Uribe\AppData\Local\Yarn\bin;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jorge Suarez Uribe\go\bin;C:\Users\Jorge Suarez Uribe\AppData\Roaming\npm
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Go\bin;C:\Program Files\nodejs\;C:\Users\Jorge Suarez Uribe\AppData\Local\Android\Sdk\platform-tools;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\;C:\Users\Jorge Suarez Uribe\AppData\Local\Microsoft\WindowsApps;C:\Users\Jorge Suarez Uribe\AppData\Local\Yarn\bin;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jorge Suarez Uribe\go\bin;C:\Users\Jorge Suarez Uribe\AppData\Roaming\npm
 
 Yarn version: 
   1.13.0
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types: Request "https://registry.yarnpkg.com/@types" returned a 405
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65373:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129397:22)
-      at Request.emit (events.js:189:13)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130369:10)
-      at Request.emit (events.js:189:13)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130291:12)
-      at Object.onceWrapper (events.js:277:13)
-      at IncomingMessage.emit (events.js:194:15)
-      at endReadableNT (_stream_readable.js:1125:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: EPERM: operation not permitted, scandir 'C:\Users\Jorge Suarez Uribe\Documents\Cheil\book\node_modules\@types'
 
 npm manifest: 
   {

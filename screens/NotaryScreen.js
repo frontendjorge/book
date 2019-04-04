@@ -86,28 +86,45 @@ export default class NotaryScreen extends React.Component {
     const data = [
       {
           key: 1,
-          amount: 50,
-          svg: { fill: '#600080' },
+          amount: 1000000,
+          label: 'Retención en la fuente',
+          svg: { fill: '#004d4d' },
       },
       {
           key: 2,
-          amount: 50,
-          svg: { fill: '#9900cc' }
+          amount: 500000,
+          label: 'Gastos notariales',
+          svg: { fill: '#008080' }
       },
       {
           key: 3,
-          amount: 40,
-          svg: { fill: '#c61aff' }
+          amount: 4000000,
+          label: 'IVA',
+          svg: { fill: '#00b3b3' }
       },
       {
           key: 4,
-          amount: 95,
-          svg: { fill: '#d966ff' }
+          amount: 180000,
+          label: 'Copias**',
+          svg: { fill: '#00e6e6' }
       },
       {
           key: 5,
-          amount: 35,
-          svg: { fill: '#ecb3ff' }
+          amount: 1450000,
+          label: 'Impuesto de beneficencia',      
+          svg: { fill: '#1affff' }
+      },
+      {
+        key: 6,
+        amount: 350000,
+        label: 'Impuesto de registro*',
+        svg: { fill: '#66ffff' }
+      },
+     {
+      key: 7,
+      amount: 180000,
+      label: 'Certificados de libertad',
+      svg: { fill: '#ccffff' }
       }
   ]
 
@@ -115,6 +132,7 @@ export default class NotaryScreen extends React.Component {
       return slices.map((slice, index) => {
           const { labelCentroid, pieCentroid, data } = slice;
           return (
+              
               <Text
                   key={index}
                   x={pieCentroid[ 0 ]}
@@ -123,11 +141,17 @@ export default class NotaryScreen extends React.Component {
                   textAnchor={'middle'}
                   alignmentBaseline={'middle'}
                   fontSize={24}
-                  stroke={'black'}
+                  stroke={'white'}
                   strokeWidth={0.2}
+                  style={styles.legends}
               >
-                  {data.amount}
+
+                  
+                    {data.amount}
+                    {data.label}
               </Text>
+             
+              
           )
       })
   }
@@ -172,16 +196,16 @@ export default class NotaryScreen extends React.Component {
           {/*<Text style={styles.info}>Tipo de venta: {this.state.typeSe}</Text>
           <Text style={styles.info}>Tipo de persona: {this.state.typeP}</Text>*/}
 
-        <View style={{ justifyContent: 'center', flex: 1, paddingTop: 20 }}>
+        <View style={{ justifyContent: 'center', paddingTop: 10, flex: 1, flexDirection: 'column' }}>
 
-        <PieChart
-                style={{ height: 200 }}
+            <PieChart
+                style={{ height: 260 }}
                 valueAccessor={({ item }) => item.amount}
                 data={data}
-                spacing={0}
+                spacing={10}
                 outerRadius={'95%'}
             >
-                <Labels/>
+                 <Labels> </Labels>
             </PieChart>
 
         </View> 
@@ -317,6 +341,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#ffffff',
     fontFamily: "Roboto-Thin",
+  },
+  legends: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
+  },
+  legendsInner: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
+    marginTop:300
+  },
+  legendsContainer: {
+    paddingTop:280,
   }
+
 });
 
