@@ -1,0 +1,70 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types
+
+PATH: 
+  C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Go\bin;C:\Program Files\nodejs\;C:\Users\Jorge Suarez Uribe\AppData\Local\Android\Sdk\platform-tools;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Python\Python37-32\;C:\Users\Jorge Suarez Uribe\AppData\Local\Microsoft\WindowsApps;C:\Users\Jorge Suarez Uribe\AppData\Local\Yarn\bin;C:\Users\Jorge Suarez Uribe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jorge Suarez Uribe\go\bin;C:\Users\Jorge Suarez Uribe\AppData\Roaming\npm
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  10.15.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types: Request "https://registry.yarnpkg.com/@types" returned a 405
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65373:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129397:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130369:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130291:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "eject": "expo eject",
+      "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    },
+    "jest": {
+      "preset": "jest-expo"
+    },
+    "dependencies": {
+      "@expo/samples": "2.1.1",
+      "expo": "^32.0.6",
+      "prop-types": "^15.7.2",
+      "react": "16.5.0",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+      "react-native-chart-kit": "^2.4.0",
+      "react-native-elements": "^1.1.0",
+      "react-native-highlight-words": "^1.0.1",
+      "react-native-masked-text": "^1.11.1",
+      "react-native-platform-touchable": "^1.1.1",
+      "react-native-pure-chart": "^0.0.24",
+      "react-native-router-flux": "^4.0.6",
+      "react-native-search-filter": "^0.1.4",
+      "react-native-text-highlight": "^1.0.1",
+      "react-navigation": "^3.0.9"
+    },
+    "devDependencies": {
+      "babel-preset-expo": "^5.0.0",
+      "jest-expo": "^32.0.0"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  

@@ -1,6 +1,7 @@
 import React from 'react';
-import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button, Picker, Alert  } from 'react-native';
-import { TextInputMask, TextMask  } from 'react-native-masked-text'
+import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button, Picker, Alert, Dimensions  } from 'react-native';
+import { TextInputMask, TextMask  } from 'react-native-masked-text';
+import { PieChart } from 'react-native-svg-charts';
 
 const typePerson = [
   {
@@ -40,6 +41,10 @@ const typeSell = [
   }
 ];
 
+const screenWidth = Dimensions.get('window').width;
+
+
+
 
 export default class NotaryScreen extends React.Component {
   static navigationOptions = {
@@ -52,84 +57,98 @@ export default class NotaryScreen extends React.Component {
       text: 'Useless Placeholder',
       typeP: '',
       typeSe: '',
-      sellPropertyValue: ''
+      sellPropertyValue: '',
+      selectedSlice: {
+        label: '',
+        value: 0
+      },
+      labelWidth: 0
     };
   }
 
+  onChangeText = async (key, val) => {
+    this.setState({ [key]: val});
+    const unmaskedseelValue = this.state.sellPropertyValue.getRawValue();
+    console.warn(unmaskedseelValue);
+    
+  }
 
-    _onPressLearnMore = async () => {
-      let typeSell = this.state.typeSe;    
-      this.setState({typeSe: typeSell});
-      let typePerson = this.state.typeP;    
-      this.setState({typeP: typePerson});
-      const unmaskedseelValue = this.state.sellPropertyValue.getRawValue();
-      
-      
-      if(typeSell != "" && typePerson != "" && unmaskedseelValue != NaN){
-        this.setState({typeP: typePerson});
-        this.setState({typeSe: typeSell});
-        this.setState({sellPropertyValue: unmaskedseelValue});
-        console.warn(typeSell + " holaaa " + typePerson + " " + unmaskedseelValue);
-      }else{
-        Alert.alert("DEBES SABER QUE","Es necesario ingresar todos los campos");
-      }
+
  
-    }
+    
 
     componentDidMount() {
       
     }
 
   render() {
+    
+    const data = [
+      {
+          key: 1,
+          amount: 50,
+          svg: { fill: '#600080' },
+      },
+      {
+          key: 2,
+          amount: 50,
+          svg: { fill: '#9900cc' }
+      },
+      {
+          key: 3,
+          amount: 40,
+          svg: { fill: '#c61aff' }
+      },
+      {
+          key: 4,
+          amount: 95,
+          svg: { fill: '#d966ff' }
+      },
+      {
+          key: 5,
+          amount: 35,
+          svg: { fill: '#ecb3ff' }
+      }
+  ]
+
+  const Labels = ({ slices, height, width }) => {
+      return slices.map((slice, index) => {
+          const { labelCentroid, pieCentroid, data } = slice;
+          return (
+              <Text
+                  key={index}
+                  x={pieCentroid[ 0 ]}
+                  y={pieCentroid[ 1 ]}
+                  fill={'white'}
+                  textAnchor={'middle'}
+                  alignmentBaseline={'middle'}
+                  fontSize={24}
+                  stroke={'black'}
+                  strokeWidth={0.2}
+              >
+                  {data.amount}
+              </Text>
+          )
+      })
+  }
+
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView>
         
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
 
-      <View>
+      <View style={styles.container}>
   
         <View>
           <Text style={styles.bigTitle}>Calculadora gastos de Escr</Text>
-          <Text style={styles.info}>Los gastos de escrituración y registro son la suma que se debe cancelar por la compra o venta de un bien inmueble. Hay unos gastos que se deben cancelar en la notaría, y otros que se pagan en la oficina de instrumentos públicos.</Text>
-          <Text style={styles.bigTitle}>Seleccione el tipo de venta y persona</Text>    
+          <Text style={styles.smallTitle}>Los gastos de escrituración y registro son la suma que se debe cancelar por la compra o venta de un bien inmueble. Hay unos gastos que se deben cancelar en la notaría, y otros que se pagan en la oficina de instrumentos públicos.</Text>
+            
         </View>
-          <View>
-              <Picker
-                    style={{height: 50, width: '100%'}}
-                    selectedValue={this.state.typeSe}
-                    onValueChange={itemValue => {
-                    this.setState({
-                      typeSe: itemValue
-                    })
-                    }}>       
-                    {typeSell.map((i, index) => (
-                      <Picker.Item key={index} label={i.label} value={i.value} />
-                    ))}
-                    
-              </Picker>
-        
-          </View>
+          
 
           <View>
-
-              <Picker
-                style={{height: 50, width: '100%'}}
-                selectedValue={this.state.typeP}
-                 onValueChange={itemValueP => {
-                this.setState({
-                  typeP: itemValueP
-                })
-                }}>   
-                {typePerson.map((i, index) => (
-                  <Picker.Item key={index} label={i.label} value={i.value} />
-                ))}
-              </Picker>
-
-          </View>
-
-          <View>
-
+          <Text style={styles.bigTitleSpecial}>Ingrese el valor de venta</Text>
           <TextInputMask
               type={'money'}
               options={{
@@ -139,30 +158,40 @@ export default class NotaryScreen extends React.Component {
                 unit: '$',
                 suffixUnit: ''
               }}
+              placeholder="Ingrese el valor de venta"
               value={this.state.sellPropertyValue}
               ref={(refsellPropertyValue) => this.state.sellPropertyValue = refsellPropertyValue}
-              onChangeText={textSell => {
-              this.setState({
-                sellPropertyValue: textSell
-              })
-              }}
+              onChangeText={textSell => this.onChangeText('sellPropertyValue', textSell)}
               id="sellPropertyValue"
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              placeholder="Ingrese el valor de venta"
+              style={styles.searchInput}
               keyboardType={'numeric'}                            
             />
 
           </View>
 
-          <Button
-              onPress={this._onPressLearnMore}
-              title="¡Calcular ahora!"
-              color="#841584"
-              accessibilityLabel="Presiona para calcular los gastos de escrituración"
-            />
-       
-          <Text style={styles.info}>Tipo de venta: {this.state.typeSe}</Text>
-          <Text style={styles.info}>Tipo de persona: {this.state.typeP}</Text>
+          {/*<Text style={styles.info}>Tipo de venta: {this.state.typeSe}</Text>
+          <Text style={styles.info}>Tipo de persona: {this.state.typeP}</Text>*/}
+
+        <View style={{ justifyContent: 'center', flex: 1, paddingTop: 20 }}>
+
+        <PieChart
+                style={{ height: 200 }}
+                valueAccessor={({ item }) => item.amount}
+                data={data}
+                spacing={0}
+                outerRadius={'95%'}
+            >
+                <Labels/>
+            </PieChart>
+
+        </View> 
+
+          <View style={styles.commissionStyle}>
+            <View></View>
+            <View></View>
+          </View>
+
+
           <View style={styles.commissionStyle}>
               <Text style={styles.commissionLabel}>Valor de la venta: </Text>
               <TextMask
@@ -178,6 +207,30 @@ export default class NotaryScreen extends React.Component {
                 }}
               />
             </View>
+
+
+           
+
+
+        <View>
+          <Text style={styles.smallTitleXS}>
+          Los gastos notariales corresponden al valor de las escrituras, notariado y registro del inmueble, objeto de una compraventa. El vendedor y comprador pagan por partes iguales los derechos notariales. El impuesto de beneficencia está a cargo del comprador, la retención en la fuente y el impuesto de ganancia ocasional lo debe cancelar el vendedor.
+          </Text>
+
+          <Text style={styles.smallTitleXS}>
+            *Los valores pueden variar de acuerdo al departamento por atribución de cada Asamblea Departamental.
+          </Text>
+
+          <Text style={styles.smallTitleXS}>
+          **El valor de las copias corresponde a un promedio de comportamiento del mercado y depende de la cantidad de hojas de la escritura, lo que está sujeto a la cantidad de linderos, anotaciones, aclaraciones, y demás observaciones y parágrafos incluidos en la venta.
+          </Text>
+
+          <Text style={styles.smallTitleXS}>
+          Los valores descritos aquí son informativos y apróximados. INMOOBI S.A.S no se hace responsable por variación en los mismos.
+          </Text>
+        </View>
+
+
       </View>  
 
       </ScrollView>
@@ -188,12 +241,62 @@ export default class NotaryScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
-    backgroundColor: '#ffffff',
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#282B33',
+    color: '#ffffff',
   },
   bigTitle: {
     textAlign: 'center',
     fontSize: 20,
+    color: 'yellow',
+    textTransform: 'uppercase',
+    fontFamily: "Roboto-Bold",
+  },
+  bigTitleSpecial: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#ffffff',
+    textTransform: 'uppercase',
+    fontFamily: "Roboto-Bold",
+    marginTop: 10,
+    marginBottom: 0,
+  },
+  smallTitle: {
+    textAlign: 'center',
+    fontSize: 15,
+    color: '#ffffff',
+    marginTop: 6,
+    marginBottom: 6,
+    fontFamily: "Roboto-Thin",
+  },
+  smallTitleXS: {
+    textAlign: 'center',
+    fontSize: 13,
+    color: '#cccccc',
+    marginTop: 6,
+    marginBottom: 6,
+    fontFamily: "Roboto-Thin",
+  },
+  searchInput:{
+    padding: 10,
+    borderColor: '#333333',
+    borderWidth: 1,
+    fontFamily: "Roboto-Thin",
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 20,
+    fontSize: 15,
+    color: '#ffffff',
+    borderRadius: 20,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
+    backgroundColor: '#353A45',
   },
   info: {
     textAlign: 'justify',
@@ -205,9 +308,15 @@ const styles = StyleSheet.create({
   },
   commissionLabel: {
     width: '50%',
+    fontSize: 15,
+    color: '#ffffff',
+    fontFamily: "Roboto-Bold",
   },
   commissionLabelV: {
     width: '50%',
+    fontSize: 15,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
   }
 });
 
