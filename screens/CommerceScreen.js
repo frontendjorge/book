@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   bigTitle: {
     textAlign: 'center',
     fontSize: 20,
-    color: 'yellow',
+    color: 'rgb(254, 160, 79)',
     textTransform: 'uppercase',
     fontFamily: "Roboto-Bold",
   },

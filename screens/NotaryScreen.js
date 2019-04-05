@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
   bigTitle: {
     textAlign: 'center',
     fontSize: 20,
-    color: 'yellow',
+    color: 'rgb(254, 160, 79)',
     textTransform: 'uppercase',
     fontFamily: "Roboto-Bold",
   },
@@ -628,7 +628,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 50,
     backgroundColor: '#282B33',
-    borderColor: 'yellow',
+    borderColor: 'rgb(254, 160, 79)',
     borderWidth: 3,
     borderStyle: 'dashed',
     marginTop: 5,
@@ -693,7 +693,7 @@ const styles = StyleSheet.create({
   },
   totalTopay: {
     fontSize: 16,
-    color: 'yellow',
+    color: 'rgb(254, 160, 79)',
     fontFamily: "Roboto-Bold",
     marginTop:0,
     textAlign: 'center',
