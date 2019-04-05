@@ -58,6 +58,16 @@ export default class NotaryScreen extends React.Component {
       typeP: '',
       typeSe: '',
       sellPropertyValue: '',
+      sellRte: 0,
+      sellNotaryFees: 0,
+      sellNotaryTaxes: 0,
+      sellCharityTaxes: 0,
+      sellRegisterTaxes: 0,
+      copies: 70000,
+      certificates: 18000,
+      totalNotaryFees: 0,
+      totalRegisterFees: 0,
+      totalToPay: 0,
       selectedSlice: {
         label: '',
         value: 0
@@ -66,10 +76,34 @@ export default class NotaryScreen extends React.Component {
     };
   }
 
+  
   onChangeText = async (key, val) => {
-    this.setState({ [key]: val});
+    //this.setState({ [key]: val});
     const unmaskedseelValue = this.state.sellPropertyValue.getRawValue();
-    console.warn(unmaskedseelValue);
+    //console.warn(unmaskedseelValue);
+    const rteValue = unmaskedseelValue * 1 /100;
+    const NotaryFees = unmaskedseelValue * 0.3 /100;
+    const NotaryFeesTaxes = NotaryFees * 19 /100;
+    const CharityFeesTaxes = unmaskedseelValue * 1 /100;
+    const registerTaxes = unmaskedseelValue * 0.5 /100;
+    const unmaskedseelValueCopies = this.state.copies;
+    const unmaskedseelValueCertificates = this.state.certificates;
+    const NotaryFeesTotal = rteValue + NotaryFees + NotaryFeesTaxes + unmaskedseelValueCopies;
+    const RegisterFeesTotal = CharityFeesTaxes + registerTaxes + unmaskedseelValueCertificates;
+    const toPay = NotaryFeesTotal + RegisterFeesTotal;
+    //console.warn(RegisterFeesTotal);
+
+    this.setState({
+      sellPropertyValue: val,
+      sellRte: rteValue,
+      sellNotaryFees: NotaryFees,
+      sellNotaryTaxes: NotaryFeesTaxes,
+      sellCharityTaxes: CharityFeesTaxes,
+      sellRegisterTaxes: registerTaxes,
+      totalNotaryFees: NotaryFeesTotal,
+      totalRegisterFees: RegisterFeesTotal,
+      totalToPay: toPay
+    });
     
   }
 
@@ -86,45 +120,52 @@ export default class NotaryScreen extends React.Component {
     const data = [
       {
           key: 1,
-          amount: 1000000,
+          amount: this.state.sellRte,
           label: 'Retención en la fuente',
           svg: { fill: '#004d4d' },
+          arc: { cornerRadius: 5  }
       },
       {
           key: 2,
-          amount: 500000,
+          amount: this.state.sellNotaryFees,
           label: 'Gastos notariales',
-          svg: { fill: '#008080' }
+          svg: { fill: '#008080' },
+          arc: { cornerRadius: 5  }
       },
       {
           key: 3,
-          amount: 4000000,
+          amount: this.state.sellNotaryTaxes,
           label: 'IVA',
-          svg: { fill: '#00b3b3' }
+          svg: { fill: '#00b3b3' },
+          arc: { cornerRadius: 5  }
       },
       {
           key: 4,
-          amount: 180000,
+          amount: this.state.copies,
           label: 'Copias**',
-          svg: { fill: '#00e6e6' }
+          svg: { fill: '#4B8893' },
+          arc: { cornerRadius: 5  }
       },
       {
           key: 5,
-          amount: 1450000,
+          amount: this.state.sellCharityTaxes,
           label: 'Impuesto de beneficencia',      
-          svg: { fill: '#1affff' }
+          svg: { fill: '#6EA0A9' },
+          arc: { cornerRadius: 5  }
       },
       {
         key: 6,
-        amount: 350000,
+        amount: this.state.sellRegisterTaxes,
         label: 'Impuesto de registro*',
-        svg: { fill: '#66ffff' }
+        svg: { fill: '#93B8BF' },
+        arc: { cornerRadius: 5  }
       },
      {
       key: 7,
-      amount: 180000,
+      amount: this.state.certificates,
       label: 'Certificados de libertad',
-      svg: { fill: '#ccffff' }
+      svg: { fill: '#B7D0D3' },
+      arc: { cornerRadius: 5  }
       }
   ]
 
@@ -165,14 +206,14 @@ export default class NotaryScreen extends React.Component {
       <View style={styles.container}>
   
         <View>
-          <Text style={styles.bigTitle}>Calculadora gastos de Escr</Text>
+          <Text style={styles.bigTitle}>SIMULADOR GASTOS ESCRITURACIÓN Y REGISTRO</Text>
           <Text style={styles.smallTitle}>Los gastos de escrituración y registro son la suma que se debe cancelar por la compra o venta de un bien inmueble. Hay unos gastos que se deben cancelar en la notaría, y otros que se pagan en la oficina de instrumentos públicos.</Text>
             
         </View>
           
 
           <View>
-          <Text style={styles.bigTitleSpecial}>Ingrese el valor de venta</Text>
+          
           <TextInputMask
               type={'money'}
               options={{
@@ -205,22 +246,17 @@ export default class NotaryScreen extends React.Component {
                 spacing={10}
                 outerRadius={'95%'}
             >
-                 <Labels> </Labels>
+              
             </PieChart>
 
         </View> 
 
-          <View style={styles.commissionStyle}>
-            <View></View>
-            <View></View>
-          </View>
-
-
-          <View style={styles.commissionStyle}>
-              <Text style={styles.commissionLabel}>Valor de la venta: </Text>
-              <TextMask
-              style={styles.commissionLabelV}
-              value={this.state.sellPropertyValue}
+        <View style={styles.totalStyle}>
+            <Text style={styles.totalTitleStyle}>VALOR TOTAL</Text>
+            <Text style={styles.totalValueStyle}>
+            <TextMask
+              style={styles.totalTopay}
+              value={this.state.totalToPay}
               type={'money'}
               options={{
                   precision: 0,
@@ -230,8 +266,174 @@ export default class NotaryScreen extends React.Component {
                   suffixUnit: ''
                 }}
               />
+            </Text>
+            <Text style={styles.totalTitleStyle}>ESCRITURACIÓN</Text>
+        </View>
+
+          <View style={styles.commissionStyle}>
+            <View></View>
+            <View></View>
+          </View>
+
+          <View style={styles.centerLegendsData}>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconRte}></Text>
+                <Text style={styles.commissionLabel}>Retención en la fuente: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.sellRte}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
             </View>
 
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconNotaryfees}></Text>
+                <Text style={styles.commissionLabel}>Gastos Notariales: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.sellNotaryFees}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconNotaryTaxes}></Text>
+                <Text style={styles.commissionLabel}>IVA Gastos Notariales: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.sellNotaryTaxes}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconCopies}></Text>
+                <Text style={styles.commissionLabel}>**Copias: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.copies}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconCharity}></Text>
+                <Text style={styles.commissionLabel}>Impuesto de beneficencia: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.sellCharityTaxes}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconRegisterTaxes}></Text>
+                <Text style={styles.commissionLabel}>*Impuesto de registro: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.sellRegisterTaxes}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconCertificates}></Text>
+                <Text style={styles.commissionLabel}>Certificados de libertad: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.certificates}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconTotals}></Text>
+                <Text style={styles.commissionLabel}>Total derechos notariales: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.totalNotaryFees}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+            <View style={styles.commissionStyle}>
+                <Text style={styles.iconTotals}></Text>
+                <Text style={styles.commissionLabel}>Total gastos de registro: </Text>
+                <TextMask
+                style={styles.commissionLabelV}
+                value={this.state.totalRegisterFees}
+                type={'money'}
+                options={{
+                    precision: 0,
+                    separator: ',',
+                    delimiter: '.',
+                    unit: '$',
+                    suffixUnit: ''
+                  }}
+                />
+            </View>
+
+
+          </View>
 
            
 
@@ -330,22 +532,131 @@ const styles = StyleSheet.create({
     flex: 1, 
     flexDirection: 'row',
   },
+  iconRte: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#004d4d',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconNotaryfees: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#008080',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconNotaryTaxes: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#00b3b3',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconCopies: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#4B8893',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconCharity: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#6EA0A9',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconRegisterTaxes: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#93B8BF',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconCertificates: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: '#B7D0D3',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
+  iconTotals: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: '#282B33',
+    borderColor: 'yellow',
+    borderWidth: 3,
+    borderStyle: 'dashed',
+    marginTop: 5,
+    marginRight: 15,
+    marginBottom:10,
+    marginLeft: 15,
+  },
   commissionLabel: {
-    width: '50%',
+    width: '60%',
     fontSize: 15,
     color: '#ffffff',
     fontFamily: "Roboto-Bold",
+    marginTop: 8,
   },
   commissionLabelV: {
-    width: '50%',
+    width: '30%',
     fontSize: 15,
     color: '#ffffff',
     fontFamily: "Roboto-Thin",
+    marginTop: 8,
   },
   legends: {
     fontSize: 15,
     color: '#ffffff',
     fontFamily: "Roboto-Thin",
+    position: 'relative',
+    display: 'flex'
+  
   },
   legendsInner: {
     fontSize: 15,
@@ -355,7 +666,42 @@ const styles = StyleSheet.create({
   },
   legendsContainer: {
     paddingTop:280,
+  },
+  totalStyle: {
+    flex: 1,
+    fontSize: 15,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
+    marginTop:-160,
+    marginBottom: 115,
+    textAlign: 'center',
+    width: '100%',
+  },
+  totalTitleStyle: {
+    fontSize: 12,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
+    marginTop:0,
+    textAlign: 'center',
+  },
+  totalValueStyle: {
+    fontSize: 12,
+    color: '#ffffff',
+    fontFamily: "Roboto-Thin",
+    marginTop:0,
+    textAlign: 'center',
+  },
+  totalTopay: {
+    fontSize: 16,
+    color: 'yellow',
+    fontFamily: "Roboto-Bold",
+    marginTop:0,
+    textAlign: 'center',
+  },
+  centerLegendsData: {
+    width: '90%',
+    justifyContent:'center',
+    marginBottom:20,
   }
 
 });
-
