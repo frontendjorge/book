@@ -22,30 +22,7 @@ const shadowTop = {
   })
 };
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
-          : 'md-home'
-      }
-    />
-  ),
-  tabBarOptions: { 
-    activeTintColor: Colors.activeTintColor,
-    style: {
-      backgroundColor: Colors.tabBarBackground,
-      shadowTop,
-    },
-  }
-};
 
 const CalculatorStack = createStackNavigator({
   Links: CalculatorScreen,
@@ -94,11 +71,11 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'weee',
+  tabBarLabel: 'Administración',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-information' : 'md-information'}
+      name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
     />
   ),
   tabBarOptions: { 
@@ -113,7 +90,7 @@ SettingsStack.navigationOptions = {
 
 
 export default createBottomTabNavigator({
-  HomeStack,
+
   CalculatorStack,
   LinksStack,
   SettingsStack,

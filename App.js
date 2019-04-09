@@ -23,19 +23,29 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
 
-          {/*Platform.OS === 'ios' && <StatusBar barStyle="default" />*/}
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <StatusBar hidden={true} />
           <AppNavigator />
-         
-         
-          <AdMobBanner 
+
+
+          {Platform.OS === 'android' && <AdMobBanner 
             style={styles.blockcenter}
             bannerSize="fullBanner"
             adUnitID="ca-app-pub-8103485771273260/2997499904"
             testDeviceID="EMULATOR"
             onDidFailToReceiveAdWithError={this.bannerError}
-          />  
+          />  }
+         
 
+         {Platform.OS === 'ios' && <AdMobBanner 
+            style={styles.blockcenter}
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-8103485771273260~4171251245"
+            testDeviceID="EMULATOR"
+            onDidFailToReceiveAdWithError={this.bannerError}
+          />  }
+          
+         
          
 
         </View>
