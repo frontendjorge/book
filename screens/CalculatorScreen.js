@@ -50,7 +50,7 @@ class CalculatorScreen extends React.Component {
            
 
         <Touchable
-          background={Touchable.Ripple('#A3B40E', false)}
+          background={Touchable.Ripple('#157A6B', false)}
           style={styles.option}
           onPress={() => this.props.navigation.navigate('Notary')}>
           <View style={{ flexDirection: 'row' }}>
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   welcomeNotary: {
-    backgroundColor: '#5EB8D2',
+    backgroundColor: '#157A6B',
     alignItems: 'center',
     paddingTop: 20,
     paddingBottom: 30,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   welcomeComission: {
-    backgroundColor: '#A3B40E',
+    backgroundColor: '#507743',
     alignItems: 'center',
     paddingTop: 30,
     paddingBottom: 40,
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     marginRight: 0,
   },
   option: {
-    backgroundColor: '#A3B40E',
+    backgroundColor: '#063927',
     paddingHorizontal: 15,
     paddingVertical: 15,
     marginBottom:40,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   optiontwo: {
-    backgroundColor: '#5EB8D2',
+    backgroundColor: '#063927',
     paddingHorizontal: 15,
     paddingVertical: 15,
     marginBottom:40,

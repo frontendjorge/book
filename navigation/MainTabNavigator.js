@@ -1,6 +1,6 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { Platform, View, Text, TouchableHighlight, Image } from 'react-native';
+import { createStackNavigator, createBottomTabNavigator, DrawerNavigator  } from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import CalculatorScreen from '../screens/CalculatorScreen';
@@ -24,7 +24,11 @@ const shadowTop = {
 
 
 
-const CalculatorStack = createStackNavigator({
+
+
+
+
+  const CalculatorStack = createStackNavigator({
   Links: CalculatorScreen,
 });
 
@@ -41,6 +45,7 @@ CalculatorStack.navigationOptions = {
     style: {
       backgroundColor: Colors.tabBarBackground,
       shadowTop,
+      paddingVertical: 6,
     },
   }
 };
@@ -62,6 +67,7 @@ LinksStack.navigationOptions = {
     style: {
       backgroundColor: Colors.tabBarBackground,
       shadowTop,
+      paddingVertical: 6,
     },
   }
 };
@@ -83,6 +89,7 @@ SettingsStack.navigationOptions = {
     style: {
       backgroundColor: Colors.tabBarBackground,
       shadowTop,
+      paddingVertical: 6,
     },
   }
 };
@@ -95,6 +102,7 @@ export default createBottomTabNavigator({
   LinksStack,
   SettingsStack,
 });
+
 
 
 

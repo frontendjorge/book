@@ -27,24 +27,22 @@ export default class App extends React.Component {
           <StatusBar hidden={true} />
           <AppNavigator />
 
-
-          {Platform.OS === 'android' && <AdMobBanner 
-            style={styles.blockcenter}
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-8103485771273260/2997499904"
-            testDeviceID="EMULATOR"
-            onDidFailToReceiveAdWithError={this.bannerError}
-          />  }
-         
-
-         {Platform.OS === 'ios' && <AdMobBanner 
-            style={styles.blockcenter}
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-8103485771273260~4171251245"
-            testDeviceID="EMULATOR"
-            onDidFailToReceiveAdWithError={this.bannerError}
-          />  }
+            {Platform.OS === 'android' && <AdMobBanner 
+              style={styles.blockcenter}
+              bannerSize="banner"
+              adUnitID="ca-app-pub-8103485771273260/2997499904"
+              testDeviceID="EMULATORMIMIX2"
+              onDidFailToReceiveAdWithError={this.bannerError}
+            />  }
           
+
+          {Platform.OS === 'ios' && <AdMobBanner 
+              style={styles.blockcenter}
+              bannerSize="banner"
+              adUnitID="ca-app-pub-8103485771273260~4171251245"
+              testDeviceID="EMULATORMIMIX2IOS"
+              onDidFailToReceiveAdWithError={this.bannerError}
+            />  }
          
          
 

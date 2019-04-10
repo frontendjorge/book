@@ -1,7 +1,8 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator, DrawerNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createDrawerNavigator, DrawerNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
+//import MainTabNavigator from './Menu';
 
 export default createAppContainer(createSwitchNavigator({
   // You could add another route here for authentication.
