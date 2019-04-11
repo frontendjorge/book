@@ -155,7 +155,7 @@ const customDrawerContentComponent = props => (
                 {Platform.OS === 'android' && <AdMobBanner 
                 style={styles.blockcenter}
                 bannerSize="mediumRectangle"
-                adUnitID="ca-app-pub-8103485771273260/2997499904"
+                adUnitID="ca-app-pub-8103485771273260/3830332289"
                 testDeviceID="EMULATORMIMIX2"
                 onDidFailToReceiveAdWithError={this.bannerError}
                 />  }
@@ -164,7 +164,7 @@ const customDrawerContentComponent = props => (
             {Platform.OS === 'ios' && <AdMobBanner 
                 style={styles.blockcenter}
                 bannerSize="mediumRectangle"
-                adUnitID="ca-app-pub-8103485771273260~4171251245"
+                adUnitID="ca-app-pub-8103485771273260/4020714605"
                 testDeviceID="EMULATORMIMIX2IOS"
                 onDidFailToReceiveAdWithError={this.bannerError}
                 />  }
