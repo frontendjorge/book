@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 import { AppLoading, Asset, Font, Icon, AdMobBanner } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import AppNavigatorDrawer from './navigation/Menu';
 
 
 export default class App extends React.Component {
@@ -22,10 +23,10 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <StatusBar hidden={true} />
-          <AppNavigator />
+          <AppNavigatorDrawer/>
+          {/*<AppNavigator />*/}
 
             {Platform.OS === 'android' && <AdMobBanner 
               style={styles.blockcenter}
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor:'#111010',
     flexDirection:'row',
-    justifyContent:'center'
+    justifyContent:'center',
+    paddingVertical: 5,
   },
 });

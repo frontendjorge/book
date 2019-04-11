@@ -1,7 +1,12 @@
 import React from 'react';
 import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button, Picker, Alert, Dimensions  } from 'react-native';
 import { TextInputMask, TextMask  } from 'react-native-masked-text';
+import { createDrawerNavigator, createStackNavigator, createAppContainer, DrawerItems, SafeAreaView } from 'react-navigation';
 import { PieChart } from 'react-native-svg-charts';
+import NotaryScreenInner from '../screens/NotaryScreen';
+import ComissionScreenInner from '../screens/ComissionScreen';
+import LawsScreen from '../screens/LinksScreen';
+import AdminScreen from '../screens/SettingsScreen';
 
 const typePerson = [
   {
@@ -202,6 +207,8 @@ export default class NotaryScreen extends React.Component {
         
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
+
+
 
       <View style={styles.container}>
   

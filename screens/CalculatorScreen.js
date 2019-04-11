@@ -5,11 +5,13 @@ import Touchable from 'react-native-platform-touchable';
 import NotaryScreenInner from '../screens/NotaryScreen';
 import ComissionScreenInner from '../screens/ComissionScreen';
 
+
+
 const screenWidth = Dimensions.get('window').width - 120;
 const screenHeight = Dimensions.get('window').height / 2 + 160;
 
+export default class CalculatorScreen extends React.Component {
 
-class CalculatorScreen extends React.Component {
   static navigationOptions = {
     header: null,
     headerMode: 'none',
@@ -26,6 +28,7 @@ class CalculatorScreen extends React.Component {
   render() {
     return (  
         <View style={styles.container}>
+       
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
           <View style={styles.welcomeNotary}>
@@ -144,15 +147,7 @@ const RootStack = createStackNavigator(
 
 const AppContainerCalculator = createAppContainer(RootStack);
 
-export default class AppCalculator extends React.Component {
-  static navigationOptions = {
-    title: 'Calculator',
-    header: null
-  };
-  render() {
-    return <AppContainerCalculator />;
-  }
-}
+
 
 const styles = StyleSheet.create({
   container: {

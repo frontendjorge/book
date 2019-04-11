@@ -23,12 +23,7 @@ const shadowTop = {
 };
 
 
-
-
-
-
-
-  const CalculatorStack = createStackNavigator({
+const CalculatorStack = createStackNavigator({
   Links: CalculatorScreen,
 });
 
