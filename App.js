@@ -43,7 +43,7 @@ export default class App extends React.Component {
               adUnitID="ca-app-pub-8103485771273260~4171251245"
               testDeviceID="EMULATORMIMIX2IOS"
               onDidFailToReceiveAdWithError={this.bannerError}
-            />  }
+      />  }
          
          
 

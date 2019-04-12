@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, Button, Image, Dimensions, Platform, TouchableHighlight  } from 'react-native';
 import { createDrawerNavigator, createAppContainer, DrawerItems, SafeAreaView  } from 'react-navigation';
+import Touchable from 'react-native-platform-touchable';
 import { Ionicons } from '@expo/vector-icons';
 import { AdMobBanner } from 'expo';
 
@@ -11,7 +12,13 @@ import LinksScreenInner from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 
-
+const ButtonContainer = ({ children }) => {
+  return (
+    <View style={styles.buttonContainer}>
+      { children }
+    </View>
+  )
+}
 
 
 class CalculatorScreenSection extends React.Component {
@@ -25,13 +32,31 @@ class CalculatorScreenSection extends React.Component {
     render() {
       return (
           <View style={styles.container}>
-            <Button
-            style={{ backgroundColor: '#6FAF98', }}
-            onPress={() => this.props.navigation.openDrawer()}
-            title= "Abrir menu"
-
-            />
             <CalculatorScreen></CalculatorScreen>
+              <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
           </View>
       );
     }
@@ -48,13 +73,32 @@ class NotaryScreenSection extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <Button
-            style={{ backgroundColor: '#6FAF98', }}
-            onPress={() => this.props.navigation.openDrawer()}
-            title= "Abrir menu"
-
-            />
+           
             <NotaryScreenInner></NotaryScreenInner>
+            <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
         </View>  
       );
     }
@@ -71,13 +115,32 @@ class NotaryScreenSection extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <Button
-            style={{ backgroundColor: '#6FAF98', }}
-            onPress={() => this.props.navigation.openDrawer()}
-            title= "Abrir menu"
-
-            />
+          
             <ComissionScreenInner></ComissionScreenInner>
+            <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
         </View>  
       );
     }
@@ -94,13 +157,32 @@ class NotaryScreenSection extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <Button
-            style={{ backgroundColor: '#6FAF98', }}
-            onPress={() => this.props.navigation.openDrawer()}
-            title= "Abrir menu"
-
-            />
+            
             <LinksScreenInner></LinksScreenInner>
+            <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
         </View>  
       );
     }
@@ -117,13 +199,32 @@ class NotaryScreenSection extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <Button
-            style={{ backgroundColor: '#6FAF98', }}
-            onPress={() => this.props.navigation.openDrawer()}
-            title= "Abrir menu"
-
-            />
+            
             <SettingsScreen></SettingsScreen>
+            <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
         </View>  
       );
     }
@@ -234,12 +335,13 @@ const styles = StyleSheet.create({
     },
     welcomeImageMenu: {
       width: '80%',
-      height: 110,
+      height: 80,
       flex: 1,
+      marginTop: 20,
     },
     welcomeImageMenuInner: {
         width: '100%',
-        height: 100,
+        height: 70,
         marginLeft: 25
     },
     welcomeComission: {
@@ -306,11 +408,56 @@ const styles = StyleSheet.create({
         width:'100%',
         maxHeight: 250,
         overflow: 'hidden',
-        backgroundColor:'#ffffff',
+        backgroundColor:'#282B33',
         flexDirection:'row',
         justifyContent:'space-around',
         paddingTop: 0,
         marginTop: 20,
+    },
+    containerOpenMenu: {
+      marginBottom: 0,
+      width:60,
+      height:60,
+      backgroundColor: 'rgba(256,256,256,.3)'
+     
+    },
+    containerOpenMenuInner: {
+      position: 'absolute',
+      zIndex: 130,
+      bottom: 15,
+      right: 15,
+      width:60,
+      height:60,
+    },
+    buttonContainer: {
+      position: 'absolute',
+      bottom: -10,
+      right: 20, 
+      left: 0,
+      height: 100,
+      borderWidth: 0,
+      borderColor: 'blue',
+      backgroundColor: 'transparent',
+      display: 'flex',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+    },
+    optionOpenMenu: {
+      width:60,
+      height:60,
+      borderRadius:50,
+      backgroundColor: '#111010'
+    },
+    optionOpenMenuText: {
+      color: '#FFFFFF',
+      fontFamily: "Roboto-Thin",
+      textAlign: 'center',
+      marginTop: -3,
+      fontSize:12
+    },
+    openImageMenuInner: {
+      marginLeft: 13,
+      marginTop: 6
     }
   });
   

@@ -108,7 +108,7 @@ class LawsScreen extends React.Component {
 
           </View>
 
-          <View style={styles.welcomeNotary}>
+          <View style={styles.welcomeNotaryCo}>
             <Image
               source={
                 __DEV__
@@ -233,6 +233,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20,
     paddingBottom: 70,
+    height: 460
+   
+  },
+  welcomeNotaryCo: {
+    backgroundColor: '#157A6B',
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingBottom: 150,
     height: 460
    
   },

@@ -10,7 +10,7 @@ import ComissionScreenInner from '../screens/ComissionScreen';
 const screenWidth = Dimensions.get('window').width - 120;
 const screenHeight = Dimensions.get('window').height / 2 + 160;
 
-export default class CalculatorScreen extends React.Component {
+class CalculatorScreen extends React.Component {
 
   static navigationOptions = {
     header: null,
@@ -145,7 +145,8 @@ const RootStack = createStackNavigator(
   }
 );
 
-const AppContainerCalculator = createAppContainer(RootStack);
+//const AppContainerCalculator = createAppContainer(RootStack);
+export default createAppContainer(RootStack);
 
 
 
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#507743',
     alignItems: 'center',
     paddingTop: 30,
-    paddingBottom: 40,
+    paddingBottom: 150,
     height: 450
    
   },
