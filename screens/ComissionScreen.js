@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button, Picker, Alert  } from 'react-native';
 import { TextInputMask, TextMask  } from 'react-native-masked-text'
+import Touchable from 'react-native-platform-touchable';
 
 
 
@@ -102,13 +103,25 @@ export default class ComissionScreen extends React.Component {
                 value={this.state.dealValue}
               />
 
-              <Button
+              {/*<Button
                 onPress={this._onPressLearnMore}
                 title="¡Calcular ahora!"
                 color= 'rgb(254, 160, 79)'
                 accessibilityLabel="Presiona para calcular la comisión de venta"
               ><Text>¡Calcular ahora!</Text>
-              </Button>
+              </Button>*/}
+
+              <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={this._onPressLearnMore}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionCalculate}>
+                  <Text style={styles.optionCalculateInner}>
+                    ¡CALCULAR AHORA!
+                  </Text>
+                </View>
+                </View>
+              </Touchable>
 
          
           <View style={styles.centerLegendsData}>
@@ -314,6 +327,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1,
+  },
+  optionCalculate: {
+    width: '100%',
+    height:40,
+    paddingTop:5,
+    paddingBottom:10,
+    textAlign:'center',
+    backgroundColor: 'rgb(254, 160, 79)',
+    borderRadius: 10,
+    justifyContent: 'flex-end',
+  },
+  optionCalculateInner: {
+    color: '#ffffff',
+    fontFamily: "Roboto-Bold",
+    fontSize: 18,
+    textAlign: 'center'
   }
 });
 
