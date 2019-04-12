@@ -446,7 +446,15 @@ const styles = StyleSheet.create({
       width:60,
       height:60,
       borderRadius:50,
-      backgroundColor: '#111010'
+      borderWidth: 2,
+      borderColor: 'rgba(0,0,0,.6)',
+      borderBottomWidth: 0,
+      backgroundColor: '#111010',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 1,
     },
     optionOpenMenuText: {
       color: '#FFFFFF',
@@ -456,7 +464,7 @@ const styles = StyleSheet.create({
       fontSize:12
     },
     openImageMenuInner: {
-      marginLeft: 13,
+      marginLeft: 12,
       marginTop: 6
     }
   });
