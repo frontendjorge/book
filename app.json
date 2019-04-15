@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.inmoobisas.realestatecolombia",
-      "versionCode": 2
+      "versionCode": 3
     }
   }
 }

@@ -3,48 +3,8 @@ import { AppRegistry, View, ScrollView, Text, StyleSheet, TextInput, Button, Pic
 import { TextInputMask, TextMask  } from 'react-native-masked-text';
 import { createDrawerNavigator, createStackNavigator, createAppContainer, DrawerItems, SafeAreaView } from 'react-navigation';
 import { PieChart } from 'react-native-svg-charts';
-import NotaryScreenInner from '../screens/NotaryScreen';
-import ComissionScreenInner from '../screens/ComissionScreen';
-import LawsScreen from '../screens/LinksScreen';
-import AdminScreen from '../screens/SettingsScreen';
 
-const typePerson = [
-  {
-    label: 'Seleccione tipo de persona',
-    value: "null",
-  },
-  {
-    label: 'Soy persona natural',
-    value: 'pn',
-  },
-  {
-    label: 'Soy persona juridica',
-    value: 'pj',
-  }
-];
 
-const typeSell = [
-  {
-    label: 'Seleccione tipo de venta',
-    value: "null",
-  },
-  {
-    label: 'Venta',
-    value: '1',
-  },
-  {
-    label: 'Venta con hipoteca',
-    value: '2',
-  },
-  {
-    label: 'Hipoteca',
-    value: '3',
-  },
-  {
-    label: 'Cancelación hipoteca',
-    value: '4',
-  }
-];
 
 const screenWidth = Dimensions.get('window').width;
 

@@ -10,6 +10,7 @@ import NotaryScreenInner from '../screens/NotaryScreen';
 import ComissionScreenInner from '../screens/ComissionScreen';
 import LinksScreenInner from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ListRateScreen from '../screens/RateScreen';
 
 
 const ButtonContainer = ({ children }) => {
@@ -193,7 +194,7 @@ class NotaryScreenSection extends React.Component {
       header: null,
       title: 'Administramos su Inmueble',
       drawerIcon: ({ focused }) => (
-          <Ionicons name="md-book" size={24} color={focused ? '#ffffff' : 'white'}/>
+          <Ionicons name="md-construct" size={24} color={focused ? '#ffffff' : 'white'}/>
       ),
     };
     render() {
@@ -201,6 +202,48 @@ class NotaryScreenSection extends React.Component {
         <View style={styles.container}>
             
             <SettingsScreen></SettingsScreen>
+            <ButtonContainer>
+                  <Touchable
+                background={Touchable.Ripple('#157A6B', false)}
+                onPress={() => this.props.navigation.openDrawer()}>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.optionOpenMenu}>
+                  <View style={styles.openImageMenu}>
+                    <Image
+                    source={
+                    __DEV__
+                    ? require('../assets/images/hamburger-icon.png')
+                    : require('../assets/images/hamburger-icon.png')
+                    }
+                    style={styles.openImageMenuInner}
+                    resizeMode='contain'
+                    />
+                  </View>
+                  <Text style={styles.optionOpenMenuText}>
+                    MENU
+                  </Text>
+                </View>
+                </View>
+                </Touchable>
+              </ButtonContainer>
+        </View>  
+      );
+    }
+  };
+
+  class RateScreenSection extends React.Component {
+    static navigationOptions = {
+      header: null,
+      title: 'Tasas de Interés Vigentes',
+      drawerIcon: ({ focused }) => (
+          <Ionicons name="md-card" size={24} color={focused ? '#ffffff' : 'white'}/>
+      ),
+    };
+    render() {
+      return (
+        <View style={styles.container}>
+            
+            <ListRateScreen></ListRateScreen>
             <ButtonContainer>
                   <Touchable
                 background={Touchable.Ripple('#157A6B', false)}
@@ -283,7 +326,9 @@ const navigatordrawer = createDrawerNavigator(
         //NotaryScreenSection,
         //ComissionScreenSection,
         LawsScreenSection,
-        AdminScreenSection
+        RateScreenSection,
+        AdminScreenSection,
+        
        
     },
     {

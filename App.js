@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 import { AppLoading, Asset, Font, Icon, AdMobBanner } from 'expo';
-import AppNavigator from './navigation/AppNavigator';
+//import AppNavigator from './navigation/AppNavigator';
 import AppNavigatorDrawer from './navigation/Menu';
 
 
