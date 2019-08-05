@@ -1,6 +1,10 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
-import { AppLoading, Asset, Font, Icon, AdMobBanner } from 'expo';
+import { AppLoading } from 'expo';
+import { AdMobBanner } from 'expo-ads-admob'
+import { Asset } from 'expo-asset'
+import * as Font from 'expo-font'
+import * as Icon from '@expo/vector-icons'
 //import AppNavigator from './navigation/AppNavigator';
 import AppNavigatorDrawer from './navigation/Menu';
 
