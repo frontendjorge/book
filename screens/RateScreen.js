@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
+import Moment from 'moment';
 
 class FlatListDemo extends Component {
   constructor(props) {
@@ -20,12 +21,13 @@ class FlatListDemo extends Component {
   }
 
   makeRemoteRequest = () => {
-    const url = `https://www.datos.gov.co/resource/kq52-uq9b.json`;
+    const url = `https://www.datos.gov.co/resource/yvb2-ppaa.json`;
     this.setState({ loading: true });
 
     fetch(url)
       .then(res => res.json())
       .then(res => {
+        //console.warn(res);
         this.setState({
           data: res,
           error: res.error || null,
@@ -46,7 +48,7 @@ class FlatListDemo extends Component {
     });
 
     const newData = this.arrayholder.filter(item => {
-      const itemData = `${item.sigla.toUpperCase()}`;
+      const itemData = `${item.nombreentidad.toUpperCase()} ${item.codigoentidad} ${item.nombre}`;
       const textData = text.toUpperCase();
 
       return itemData.indexOf(textData) > -1;
@@ -81,6 +83,7 @@ class FlatListDemo extends Component {
     }
 
    
+   
     return (
 
       <View style={styles.container}>
@@ -91,26 +94,46 @@ class FlatListDemo extends Component {
         onChangeText={text => this.searchFilterFunction(text)}
         autoCorrect={false}
         value={this.state.value}
+        
       />
+      <Text style={styles.smallTitleXS}>Información actualizada de Datos Abiertos Colombia.</Text>
+      <Text style={styles.smallTitleXS}>Puede buscar por nombre, código de banco o tipo de crédito.</Text>
         <ScrollView>
         <View style={styles.containerInner}>
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => {
-            if(item.modalidad_de_credito == "CREDITO VIVIENDA"){
+            //Moment.locale('es');
+           
+            var dt = item.fechacorte;
+          
+              if(item.nombre_sub === " "){
+                item.nombre_sub = "No hay información"
+              }
+
               return (
                 <View style={styles.boxStyle}>
-                  <Text style={styles.commissionStyle}>{item.sigla} is {item.modalidad_de_credito} years old. {item.tipo_entidad} likes {item.valor}</Text>
+                  <View style={styles.legends}>
+                    <Text style={styles.dataLabelStyle}>{item.nombreentidad} </Text>
+                    <Text style={styles.dataDateStyle}>Fecha corte: {Moment(dt).format('D MMMM YYYY')} | Código entidad: {item.codigoentidad}</Text>
+                    <Text style={styles.dataDateStyle}>MODALIDAD {item.tipo}</Text>
+                    <Text style={styles.dataLabelLoanStyle}> {"TASA DE INTERÉS EFECTIVA ANUAL "+ item.tasaefectivaanual}</Text>
+                    <Text style={styles.dataDateStyle}> > Tipo Adquisición: {item.nombre_sub}</Text>
+                    
+                  
+                  </View>
                 </View>
                 )
+              
             }
-            } 
+          
         }
           keyExtractor={(item, index) => index.toString()}
           //ListHeaderComponent={this.renderHeader}
         />
         </View>
         </ScrollView>
+        
       </View>
       
       
@@ -126,6 +149,34 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     backgroundColor: '#282B33',
+    color: '#ffffff',
+  },
+  dataLabelStyle: {
+    textAlign: 'left',
+    fontSize: 16,
+    width: '100%',
+    fontFamily: "Roboto-Bold",
+    flex: 1,
+    color: '#ffffff',
+    textTransform: 'uppercase',
+  },
+  dataLabelLoanStyle: {
+    textAlign: 'left',
+    fontSize: 12,
+    width: '100%',
+    fontFamily: "Roboto-Bold",
+    flex: 1,
+    color: 'rgb(254, 160, 79)',
+    textTransform: 'uppercase',
+    paddingTop:10,
+    paddingBottom: 4,
+  },
+  dataDateStyle: {
+    textAlign: 'left',
+    fontSize: 11,
+    width: '100%',
+    fontFamily: "Roboto-Light",
+    flex: 1,
     color: '#ffffff',
   },
   containerInner: {
@@ -166,11 +217,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Thin",
   },
   smallTitleXS: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 13,
     color: '#cccccc',
     marginTop: 6,
     marginBottom: 6,
+    paddingLeft: 10,
     fontFamily: "Roboto-Thin",
   },
   searchInput:{
@@ -190,6 +242,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
     backgroundColor: '#353A45',
+    textAlign: 'center',
   },
   info: {
     textAlign: 'justify',
