@@ -14,7 +14,7 @@
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^10.0.0",
     "babel": "^6.23.0",
-    "expo": "^33.0.0",
+    "expo": "^46.0.14",
     "expo-ads-admob": "~5.0.1",
     "expo-asset": "^6.0.0",
     "expo-font": "~5.0.1",
